@@ -6,10 +6,15 @@ import {collection, addDoc} from "firebase/firestore";
 import {useSignInWithGoogle} from 'react-firebase-hooks/auth';
 import {useCollection} from 'react-firebase-hooks/firestore';
 
+interface movie {
+  user: string,
+  name: string
+}
+
 // MovieController.tsx
-function createMovie(movie){
+function createMovie(movie : movie){
   addDoc(collection(db, 'movies'), {
-            fakeUser: movie.fakeUser "Mario",
+            user: movie.user,
             name: movie.name
           });
 }
@@ -22,21 +27,21 @@ function CreateMovieView(){
     <div>
       <textarea value={textData} onChange={e=>setTextData(e.target.value)}></textarea>
       <button onClick={()=>{
-          createMovie({fakeUser: "Mario", name: textData });
+          createMovie({user: "Mario", name: textData });
       }}>Send to DB</button>
     </div> 
   )
 }
 
 function MovieListView(){
-  const [value, loading, error] = useCollection(collection(db, 'movies'));
+  const [value, loading, error] = useCollection(collection(db, 'movie'));
 
   return (
   <div className="MovieListView">
     {value? <div>
       {value.docs.map((obj) => (
         <div>
-          <div>fakeUser: {obj.data().fakeUser}</div>
+          <div>user: {obj.data().user}</div>
           <div>name: {obj.data().name}</div>
         </div>
       ))}
