@@ -6,6 +6,15 @@ import {collection, addDoc} from "firebase/firestore";
 import {useSignInWithGoogle} from 'react-firebase-hooks/auth';
 import {useCollection} from 'react-firebase-hooks/firestore';
 
+// MovieController.tsx
+function createMovie(movie){
+  addDoc(collection(db, 'movies'), {
+            fakeUser: movie.fakeUser "Mario",
+            name: movie.name
+          });
+}
+
+
 function CreateMovieView(){
   const [textData, setTextData] = useState<string>("");
 
@@ -13,10 +22,7 @@ function CreateMovieView(){
     <div>
       <textarea value={textData} onChange={e=>setTextData(e.target.value)}></textarea>
       <button onClick={()=>{
-          addDoc(collection(db, 'movies'), {
-            fakeUser: "Mario",
-            name: textData
-          });
+          createMovie({fakeUser: "Mario", name: textData });
       }}>Send to DB</button>
     </div> 
   )
