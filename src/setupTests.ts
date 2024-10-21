@@ -3,3 +3,14 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
+
+
+const { TextEncoder, TextDecoder} = require('util');
+
+global.TextEncoder = TextEncoder;
+global.TextDecoder = TextDecoder;
+
+const { ReadableStream } = require('web-streams-polyfill');
+globalThis.ReadableStream = ReadableStream;
+
+globalThis.setImmediate = global.setImmediate || ((fn: any) => setTimeout(fn,0));
