@@ -10,7 +10,7 @@ import {getFirestore, connectFirestoreEmulator} from 'firebase/firestore';   //F
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDR7TveCuQmSURA-LmzE7FKXgFHfhwqwMU",
+  apiKey: "xxx",
   authDomain: "emulatortroytest.firebaseapp.com",
   databaseURL: "https://emulatortroytest-default-rtdb.firebaseio.com",
   projectId: "emulatortroytest",
